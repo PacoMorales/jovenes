@@ -52,7 +52,7 @@
 
 							<div class = "form-group row">
 								<div class="col-md-5 col-form-label text-md-right">
-									{!! Form::label('FOLIO','Folio de Tarjeta') !!}
+									{!! Form::label('FOLIO','Folio asignado por sistema') !!}
 								</div>
 								<div class="col-md-6 offset-md-1">
 									<p><input type="text" name="FOLIO" value="{{$usuario->folio}}" style="background-color:rgba(213,222,223,.2);border:none; color:gray" readonly="readonly">  (No editable)</p>

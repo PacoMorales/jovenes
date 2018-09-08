@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\FURWEB_CTRL_ACCESO_154;
 use App\SEDESEM_154;
 use App\FURWEB_METADATO_154;
+use App\FURWEB_CONTROL_DOCTOS_154;
 
 use App\CAT_PROGRAMAS;
 use App\CAT_RED_SOCIAL;
@@ -45,6 +46,48 @@ class JOVENES_MOVIMIENTO_Controller extends Controller
 
     public function SeccionLocalidad(Request $request, $id){
             return response()->json(CAT_SECCIONES_SEDESEM::Seccion($id));
+    }
+
+    public function archivos($correo){
+        $usu = FURWEB_CTRL_ACCESO_154::select('FOLIO','LOGIN')->where('LOGIN','like','%'.$correo.'%')->get();
+        $usuario = $usu[0];
+        $programa = CAT_PROGRAMAS::find(154);
+        return view('jovenes-movimiento.carga-archivos.inicio',compact('usuario','programa'));
+    }
+
+    public function cargaArchivos(Request $request){
+        if($request->file('INE') AND $request->file('COMP_ESTUDIOS')){
+            if (getenv('HTTP_CLIENT_IP')) {
+                $ip = getenv('HTTP_CLIENT_IP');
+                } elseif (getenv('HTTP_X_FORWARDED_FOR')) {
+                $ip = getenv('HTTP_X_FORWARDED_FOR');
+                } elseif (getenv('HTTP_X_FORWARDED')) {
+                $ip = getenv('HTTP_X_FORWARDED');
+                } elseif (getenv('HTTP_FORWARDED_FOR')) {
+                $ip = getenv('HTTP_FORWARDED_FOR');
+                } elseif (getenv('HTTP_FORWARDED')) {
+                $ip = getenv('HTTP_FORWARDED');
+            } else {$ip = $_SERVER['REMOTE_ADDR'];}
+            $ine = $request->file('INE');
+            $comp_est = $request->file('COMP_ESTUDIOS');
+            $ine->move(public_path().'/documentacion/'.$request->FOLIO.'/','INE_Folio'.$request->FOLIO.'_'.$ine->getClientOriginalName());
+            $comp_est->move(public_path().'/documentacion/'.$request->FOLIO.'/','COMP-EST_Folio'.$request->FOLIO.'_'.$comp_est->getClientOriginalName());
+            $nuevo_doctos = new FURWEB_CONTROL_DOCTOS_154();
+            $nuevo_doctos->N_PERIODO            = date('Y');
+            $nuevo_doctos->CVE_PROGRAMA         = 154;
+            $nuevo_doctos->FOLIO                = $request->FOLIO;
+            $nuevo_doctos->FOLIO_RELACIONADO    = $request->FOLIO;
+            $nuevo_doctos->DOCTO_1              = 'INE_Folio'.$request->FOLIO.'_'.$ine->getClientOriginalName();
+            $nuevo_doctos->DOCTO_2              = 'COMP-EST_Folio'.$request->FOLIO.'_'.$comp_est->getClientOriginalName();
+            $nuevo_doctos->FECHA_REG            = date('Y/m/d');
+            $nuevo_doctos->USU                  = $request->LOGIN;
+            $nuevo_doctos->IP                   = $ip;
+            $nuevo_doctos->save();
+            return redirect()->route('beneficiario.cuenta',$request->LOGIN);
+        }
+        else{
+            return back()->withErrors(['FOLIO' => 'Tus archivos son incompatibles, por favor verificalos.']);
+        }
     }
 
     public function altaInfoPersonal($correo){

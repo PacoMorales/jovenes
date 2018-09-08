@@ -21,6 +21,8 @@
     <!-- Languaje -->
     <script src="{{asset('plugins/date-picker/locales/bootstrap-datepicker.es.min.js')}}"></script>
 
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 </head>
 <body>
 	@include('flash::message')

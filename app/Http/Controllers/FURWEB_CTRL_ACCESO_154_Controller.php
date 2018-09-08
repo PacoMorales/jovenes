@@ -109,7 +109,7 @@ class FURWEB_CTRL_ACCESO_154_Controller extends Controller{
 	        $nuevo->FECHA_REGISTRO   = date('Y/m/d');
 	        $nuevo->IP 				 = $ip;
 	        if($nuevo->save() == true){
-	        	return redirect()->route('beneficiario.cuenta',$nuevo->LOGIN);
+	        	return redirect()->route('beneficiario.archivo',$nuevo->LOGIN);
 	        }else{
 	        	return back()->withInput()->withErrors(['FOLIO' => 'Ha ocurrido un error inesperado.']);
 	        }

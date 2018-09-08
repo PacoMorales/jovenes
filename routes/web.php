@@ -23,6 +23,9 @@ Route::get('/', function (){
 		Route::get('nuevo/crea-tu-cuenta/login','FURWEB_CTRL_ACCESO_154_Controller@altaBeneficiario')->name('beneficiario.login');
 		Route::post('nuevo/datos','FURWEB_CTRL_ACCESO_154_Controller@capturaBeneficiario')->name('beneficiario.captura');
 
+		Route::get('nuevo/carga-tus.archivos/pdf/{id}','JOVENES_MOVIMIENTO_Controller@archivos')->name('beneficiario.archivo');
+		Route::post('nuevo/carga-tus-archivos/pdf','JOVENES_MOVIMIENTO_Controller@cargaArchivos')->name('beneficiario.archivoCaptura');
+
 		Route::get('nueva/cuenta/{id}','JOVENES_MOVIMIENTO_Controller@altaInfoPersonal')->name('beneficiario.cuenta');
 		Route::post('nueva/cuenta/datos-personales','JOVENES_MOVIMIENTO_Controller@capturaInfoPersonal')->name('beneficiario.capturaInfoPer');
 
