@@ -438,7 +438,7 @@
 				//alert(mun);
 				if(mun) {
 					$.ajax({
-						url: 'jovenes-en-movimiento/localidades/'+mun,
+						url: '/jovenes-en-movimiento/localidades/'+mun,
 						type: "GET",
 						dataType: "json",
 						success:function(data){
@@ -465,7 +465,7 @@
 				if(mun) {
 					$.ajax({
 						/*url: 'public/fuerza-joven/info-personal/'+mun+'/secciones',*/
-						url: 'jovenes-en-movimiento/secciones/'+mun,
+						url: '/jovenes-en-movimiento/secciones/'+mun,
 						type: "GET",
 						dataType: "json",
 						success:function(data){
