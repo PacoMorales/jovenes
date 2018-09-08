@@ -19,6 +19,22 @@
 						</div>
 						<br>
 							<div class = "form-group row">
+								<div class="col-md-12 col-form-label text-md-center">
+									{!! Form::label('NOMBRE_COMPLETO','* Ingresa tu nombre completo') !!}
+								</div>
+							</div>
+							<div class = "form-group row">
+								<div class="col-md-4 offset-md-0 text-md-center">
+									{!! Form::text('APELLIDO_PATERNO',null,['class' => 'form-control','placeholder' => 'APELLIDO PATERNO' ,'required','onkeypress'=>'return soloLetras(event)']) !!}
+								</div>
+								<div class="col-md-4 offset-md-0 text-md-center">
+									{!! Form::text('APELLIDO_MATERNO',null,['class' => 'form-control','placeholder' => 'APELLIDO MATERNO' ,'required','onkeypress'=>'return soloLetras(event)']) !!}
+								</div>
+								<div class="col-md-4 offset-md-0 text-md-center">
+									{!! Form::text('NOMBRES',null,['class' => 'form-control','placeholder' => 'NOMBRES' ,'required','onkeypress'=>'return soloLetras(event)']) !!}
+								</div>
+							</div>
+							<div class = "form-group row">
 								<div class="col-md-6 col-form-label text-md-right">
 									{!! Form::label('LOGIN','* Ingresa correo electrónico') !!}
 								</div>
@@ -26,7 +42,6 @@
 									{!! Form::email('LOGIN',null,['class' => 'form-control','placeholder' => 'CORREO ELECTRÓNICO' ,'required']) !!}
 								</div>
 							</div>
-
 							<div class = "form-group row">
 								<div class="col-md-6 col-form-label text-md-right">
 									{!! Form::label('PASSWORD','* Ingresa una contraseña') !!}
@@ -55,23 +70,6 @@
 								<h5 style="color:green;">¿Quieres saber más sobre este Programa Social?</h5>
 								<p>Te invitamos a visitar nuestra <a href="btn btn-link" onclick="window.open('http://imej.edomex.gob.mx/jovenes')">página oficial</a>, ahí encontrarás toda la información.</p>
 							</div>
-                        	<!--<div class="form-group row mb-0">
-								<div class="col-md-9 offset-md-2 text-md-center">
-									<h5 style="color:green;">¿Quieres participar en el programa social Jóvenes en Movimiento?</h5>
-								</div>
-								<div class="col-md-6 offset-md-5">
-									<a href="{{ route('beneficiario.login') }}" class="btn btn-link">¡Registrarte aquí! <i class="fa fa-check"></i></a>
-								</div>
-							</div>-->
-							<!--<div class="form-group row">
-                            	<div class="col-md-12 offset-md-0">
-                                	<div class="form-check">
-                                    	<div class="col-md-3 offset-md-4">
-                                    		<a class="btn btn-warning" onclick="window.open('http://imej.edomex.gob.mx/acerca-de/aviso-privacidad');"><i class="fa fa-info-circle"></i> Aviso de privacidad</a>
-                                    	</div>
-                                	</div>
-                            	</div>
-                        	</div>-->
 						</div>
 					</div>
 				</div>
@@ -94,4 +92,23 @@
 	<div class="text-md-center">
 		<a class="btn btn-link"  onclick="window.open('http://imej.edomex.gob.mx/acerca-de/aviso-privacidad');"><i class="fa fa-info-circle"></i> Aviso de privacidad</a>
 	</div>
+	<script type="text/javascript">
+		function soloLetras(e){
+	       key = e.keyCode || e.which;
+	       tecla = String.fromCharCode(key);
+	       letras = "abcdefghijklmnñopqrstuvwxyz ABCDEFGHIJKLMNÑOPQRSTUVWXYZ";
+	       especiales = "8-37-39-46";
+
+	       tecla_especial = false
+	       for(var i in especiales){
+	            if(key == especiales[i]){
+	                tecla_especial = true;
+	                break;
+	            }
+	        }
+	        if(letras.indexOf(tecla)==-1 && !tecla_especial){
+	            return false;
+	        }
+	    }
+	</script>
 @endsection

@@ -532,7 +532,7 @@
     function soloAlfa(e){
        key = e.keyCode || e.which;
        tecla = String.fromCharCode(key);
-       letras = "abcdefghijklmnñopqrstuvwxyz ABCDEFGHIJKLMNÑOPQRSTUVWXYZ0123456789";
+       letras = "abcdefghijklmnñopqrstuvwxyz ABCDEFGHIJKLMNÑOPQRSTUVWXYZ";
        especiales = "8-37-39-46";
 
        tecla_especial = false
@@ -581,7 +581,6 @@
         }
     }
 </script>
-
 	{!! Form::close() !!}
 @endsection
 

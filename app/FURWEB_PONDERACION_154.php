@@ -46,7 +46,7 @@ class FURWEB_PONDERACION_154 extends Model
 	    'IP',
 	    'FECHA_M',
 	    'USU_M',
-	    'PW_M'
+	    'PW_M',
 	    'IP_M'
     ];
 }
