@@ -22,7 +22,7 @@
 			<div class="row justify-content-center">
 				<div class="col-md-11">
 					<div class="card">
-						<div class="card-header justify-content-center">{{ '  PROGRAMA SOCIAL |  '}} {!!$programa->programa!!} {{'	|	APARTADO B 	|	DATOS SOCIOECONÓMICOS' }} <i class="fa fa-user-tie"></i></div>
+						<div class="card-header justify-content-center">{{ '  PROGRAMA SOCIAL |  '}} {!!$programa->programa!!} {{'	|	DATOS SOCIOECONÓMICOS' }} <i class="fa fa-user-tie"></i></div>
 						<div class="card-body">
 
 						<div class = "form-group row">
