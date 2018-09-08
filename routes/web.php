@@ -29,5 +29,5 @@ Route::get('/', function (){
 		Route::get('nuevo/crea-tu-cuenta/datos-socioeconomicos/{id}','JOVENES_MOVIMIENTO_Controller@altaInfoSocio')->name('beneficiario.apartado-b');
 		Route::post('nueva/cuenta/datos-socioeconomicos','JOVENES_MOVIMIENTO_Controller@capturaInfoSocio')->name('beneficiario.capturaInfoSoc');
 
-		Route::get('registro-completo/informacion-adicional','JOVENES_MOVIMIENTO_Controller@info')->name('beneficiario.info');
+		Route::get('registro-completo/informacion-adicional/{id}','JOVENES_MOVIMIENTO_Controller@info')->name('beneficiario.info');
 	});

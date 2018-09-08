@@ -240,8 +240,22 @@ class JOVENES_MOVIMIENTO_Controller extends Controller
     }
 
     public function capturaInfoSocio(Request $request){
-        dd($request->all());
-        $nuevo_registro                             = new SEDESEM_154();
+        if (getenv('HTTP_CLIENT_IP')) {
+            $ip = getenv('HTTP_CLIENT_IP');
+            } elseif (getenv('HTTP_X_FORWARDED_FOR')) {
+            $ip = getenv('HTTP_X_FORWARDED_FOR');
+            } elseif (getenv('HTTP_X_FORWARDED')) {
+            $ip = getenv('HTTP_X_FORWARDED');
+            } elseif (getenv('HTTP_FORWARDED_FOR')) {
+            $ip = getenv('HTTP_FORWARDED_FOR');
+            } elseif (getenv('HTTP_FORWARDED')) {
+            $ip = getenv('HTTP_FORWARDED');
+        } else {
+            // Método por defecto de obtener la IP del usuario
+            // Si se utiliza un proxy, esto nos daría la IP del proxy
+            // y no la IP real del usuario.
+            $ip = $_SERVER['REMOTE_ADDR'];}
+        $nuevo_registro                             = new SEDESEM_154($request->all());
         $nuevo_registro->N_PERIODO                  = date('Y');
         $nuevo_registro->CVE_PROGRAMA               = 299;
         $nuevo_registro->FOLIO                      = $request->FOLIO;
@@ -350,21 +364,22 @@ class JOVENES_MOVIMIENTO_Controller extends Controller
         $nuevo_registro->FECHA_REG                  = date('d/m/Y');
         $nuevo_registro->USU                        = $request->LOGIN;
         $nuevo_registro->PW                         = $request->PW;
-        $nuevo_registro->IP                         = $request->IP;
+        $nuevo_registro->IP                         = $ip;
         $nuevo_registro->FECHA_M                    = date('d/m/Y');
         $nuevo_registro->USU_M                      = $request->LOGIN;
-        $nuevo_registro->PW_M                       = $request->PW_M;
-        $nuevo_registro->IP_M                       = $request->IP_M;
         $nuevo_registro->CVE_ORIGEN                 = $request->CVE_ORIGEN;
-        if($nuevo_registro->save() == true){
+        //dd($nuevo_registro);
+        /*if($nuevo_registro->save() == true){
             return redirect()->route('beneficiario.info');
         }else{
             return back()->withInput()->withErrors(['FOLIO' => 'Ha ocurrido un error inesperado.']);
-        }
+        }*/
         //return redirect()->route('usuario.show',$nuevo_registro->FOLIO);
+        $nuevo_registro->save();
+        return redirect()->route('beneficiario.info',$request->CVE_ORIGEN);
     }
 
-    public function info(){
-        return view();
+    public function info($id){
+        return view('jovenes-movimiento.registrado');
     }
 }
