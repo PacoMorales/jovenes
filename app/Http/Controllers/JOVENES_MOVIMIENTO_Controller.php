@@ -8,7 +8,7 @@ use App\FURWEB_CTRL_ACCESO_154;
 use App\SEDESEM_154;
 use App\FURWEB_METADATO_154;
 use App\FURWEB_CONTROL_DOCTOS_154;
-
+use PDF;
 use App\CAT_PROGRAMAS;
 use App\CAT_RED_SOCIAL;
 use App\CAT_MUNICIPIOS_SEDESEM;
@@ -424,5 +424,12 @@ class JOVENES_MOVIMIENTO_Controller extends Controller
 
     public function info($id){
         return view('jovenes-movimiento.registrado');
+    }
+
+    public function generarPDF(){
+        //$data = ['title' => 'SECRETARÍA DE DESARROLLO SOCIAL'];
+        return view('jovenes-movimiento.pdf');
+        //$pdf = \PDF::loadView('jovenes-movimiento.pdf');
+        //return $pdf->download('FUR.pdf');
     }
 }

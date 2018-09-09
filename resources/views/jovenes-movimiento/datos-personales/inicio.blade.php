@@ -489,8 +489,8 @@
 <script>
     $('.datepicker').datepicker({
         format: "dd/mm/yyyy",
-        startDate: "01/01/1989",
-        endDate: "31/12/2006",
+        startDate: '-29y',
+        endDate: '-18y',
         startView: 2,
         maxViewMode: 2,
         clearBtn: true,
