@@ -167,7 +167,7 @@ return [
         Laracasts\Flash\FlashServiceProvider::class,
         Yajra\Oci8\Oci8ServiceProvider::class,
         //Krlove\EloquentModelGenerator\Provider\GeneratorServiceProvider::class,
-        Barryvdh\DomPDF\ServiceProvider::class
+        Barryvdh\DomPDF\ServiceProvider::class,
 
     ],
 
