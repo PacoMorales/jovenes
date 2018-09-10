@@ -270,7 +270,7 @@ class JOVENES_MOVIMIENTO_Controller extends Controller
         $orfandad       = CAT_ORFANDAD::orderBy('CVE_ORFANDAD','asc')->get();
         $grado_estudios = CAT_GRADO_ESTUDIO::orderBy('CVE_GRADO_ESTUDIOS','asc')->get();
         $t_empleo       = CAT_TIPO_EMPLEO::all();
-        $act_lab        = CAT_ACTIVIDAD_LABORAL::orderBy('ACTIVIDAD_LABORAL','asc')->get();
+        $act_lab        = CAT_ACTIVIDAD_LABORAL::orderBy('CVE_ACTIVIDAD_LABORAL','asc')->get();
         $salarios       = CAT_SALARIOS::all();
         $dependientes   = CAT_DEPENDIENTES_ECONOM::all();
         $ingresos       = CAT_PER_INGRESOS::orderBy('CVE_PER_INGRESO','asc')->get();
@@ -373,7 +373,7 @@ class JOVENES_MOVIMIENTO_Controller extends Controller
         $nuevo_registro->MENOR_COMIOMENOS           = $request->MENOR_COMIOMENOS;
         $nuevo_registro->MENOR_SINTIOHAMBRE         = $request->MENOR_SINTIOHAMBRE;
         $nuevo_registro->MENOR_MENOSCOMIDA          = $request->MENOR_MENOSCOMIDA;
-        $nuevo_registro->MENOR_ACOSTARHAMBRE        = $request->MENOR_ACOSTARHAMBRE;
+        $nuevo_registro->MENOR_ACOSTARHAMBRE        = $request->MENOR_ACOSTOHAMBRE;
         $nuevo_registro->CVE_CASADONDEVIVE_ES       = $request->CVE_CASADONDEVIVE_ES;
         $nuevo_registro->CVE_MATERIAL               = $request->CVE_MATERIAL;
         $nuevo_registro->CVE_MATERIAL2              = $request->CVE_MATERIAL2;

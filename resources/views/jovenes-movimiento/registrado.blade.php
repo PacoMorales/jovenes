@@ -10,7 +10,7 @@
 			<div class="row justify-content-center">
 				<div class="col-md-8">
 					<div class="card">
-						<div class="card-header justify-content-center text-md-center" style="color:green;"><i class="fa fa-child"></i> {{ '¡Buen trabajo!'}} <i class="fa fa-child"></i><div style="color:green;">{{' Haz completado tu registro al Programa Social Jóvenes en Momiviento!' }}</div></div>
+						<div class="card-header justify-content-center text-md-center" style="color:green;"><i class="fa fa-child"></i> {{ '¡Buen trabajo!'}} <i class="fa fa-child"></i><div style="color:green;">{{' Haz completado tu registro al Programa Social Jóvenes en Movimiento!' }}</div></div>
 						<div class="card-body">
 						<div class="form-group row mb-0">
 							<img src="{{asset('images/IMEJ-Ok.png')}}" width="750" height="150">

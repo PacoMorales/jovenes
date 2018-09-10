@@ -170,12 +170,12 @@ class FURWEB_METADATO_154 extends Model
         $armada     = $anio.$mes.$dia;
         //dd('ValidaCurp con '.$curp_aux.' contra '.$armada.$sexo.$ent);
         if ($fechaCurp != $armada){
-            dd('fecha armada');
-            //return false;
+            //dd('fecha armada');
+            return false;
         }else
             if ($sexo != $sexoCurp){
-                dd('sexo');
-                //return false;
+                //dd('sexo');
+                return false;
             }else
                 if ($ent != $entCurp){
                     //dd('ent = '.$ent.' contra entCurp = '.$entCurp);
