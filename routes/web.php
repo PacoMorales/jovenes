@@ -33,5 +33,5 @@ Route::get('/', function (){
 		Route::post('nueva/cuenta/datos-socioeconomicos','JOVENES_MOVIMIENTO_Controller@capturaInfoSocio')->name('beneficiario.capturaInfoSoc');
 
 		Route::get('registro-completo/informacion-adicional/{id}','JOVENES_MOVIMIENTO_Controller@info')->name('beneficiario.info');
-		Route::get('registro-completo/generar-pdf','JOVENES_MOVIMIENTO_Controller@generarPDF')->name('generar.miPDF');
+		Route::get('registro-completo/generar-pdf/{id}','JOVENES_MOVIMIENTO_Controller@generarPDF')->name('generar.miPDF');
 	});

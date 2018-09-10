@@ -35,6 +35,13 @@
 								<div class="col-md-12 text-md-left">
 									1. IDENTIFICACIÓN GEOGRÁFICA
 								</div>
+								<br>
+								<div class="col-md-12 text-md-left">
+									1.1 Clave de estado: {!! '$usuario->cve->estado' !!}
+								</div>
+								<div class="col-md-12 text-md-left">
+									1.2 Clave de municipio
+								</div>
 	    					</div>
 	    				</div>
 					</div>
