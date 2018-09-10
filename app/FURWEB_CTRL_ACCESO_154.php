@@ -35,7 +35,7 @@ class FURWEB_CTRL_ACCESO_154 extends Model
       $dia          = substr($fecha_esp, 0, 2);
       $mes          = substr($fecha_esp, 2, 2);
       $anio         = substr($fecha_esp, 4, 4);
-      if(($apellido_aux[0] == 'A' || $apellido_aux[0] == 'B' || $apellido_aux[0] == 'C' || $apellido_aux[0] == 'D') AND ($dia == '01' || $dia == '02') AND ($mes == '09') AND ($anio == '2018')){
+      /*if(($apellido_aux[0] == 'A' || $apellido_aux[0] == 'B' || $apellido_aux[0] == 'C' || $apellido_aux[0] == 'D') AND ($dia == '01' || $dia == '02') AND ($mes == '09') AND ($anio == '2018')){
           return true;
       }else{
             if(($apellido_aux[0] == 'E' || $apellido_aux[0] == 'F' || $apellido_aux[0] == 'G' || $apellido_aux[0] == 'H') AND ($dia == '03' || $dia == '04') AND ($mes == '09') AND ($anio == '2018')){
@@ -52,6 +52,7 @@ class FURWEB_CTRL_ACCESO_154 extends Model
                 }
             }
       }
-      return false;
+      return false;*/
+      return true;
     }
 }
