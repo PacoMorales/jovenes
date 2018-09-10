@@ -429,7 +429,7 @@ class JOVENES_MOVIMIENTO_Controller extends Controller
     public function generarPDF($id){
         $usuario = FURWEB_METADATO_154::find($id);
         $info    = SEDESEM_154::find($id);
-        dd($usuario);
+        //dd($usuario);
         //$data = ['title' => 'SECRETARÍA DE DESARROLLO SOCIAL'];
         return view('jovenes-movimiento.pdf',compact('usuario','info'));
         //$pdf = \PDF::loadView('jovenes-movimiento.pdf');
