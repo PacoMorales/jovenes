@@ -410,7 +410,7 @@ class JOVENES_MOVIMIENTO_Controller extends Controller
         $nuevo_registro->IP                         = $ip;
         $nuevo_registro->FECHA_M                    = date('d/m/Y');
         $nuevo_registro->USU_M                      = $request->LOGIN;
-        $nuevo_registro->CVE_ORIGEN                 = $request->CVE_ORIGEN;
+        //$nuevo_registro->CVE_ORIGEN                 = $request->CVE_ORIGEN;
         //dd($nuevo_registro);
         /*if($nuevo_registro->save() == true){
             return redirect()->route('beneficiario.info');
