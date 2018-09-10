@@ -399,6 +399,7 @@ class JOVENES_MOVIMIENTO_Controller extends Controller
         $nuevo_registro->CALENTADOR_GAS             = $request->CALENTADOR_GAS;
         $nuevo_registro->TANQUE_GAS                 = $request->TANQUE_GAS;
         $nuevo_registro->MEDIDOR_LUZ                = $request->MEDIDOR_LUZ;
+        $nuevo_registro->BOMBA_AGUA                 = $request->BOMBA_AGUA;
         $nuevo_registro->AIRE_ACOND                 = $request->AIRE_ACOND;
         $nuevo_registro->CALEFACCION                = $request->CALEFACCION;
         $nuevo_registro->CVE_CANT4                  = $request->CVE_CANT4;
@@ -433,7 +434,8 @@ class JOVENES_MOVIMIENTO_Controller extends Controller
         //dd($usuario);
         //$data = ['title' => 'SECRETARÍA DE DESARROLLO SOCIAL'];
         return view('jovenes-movimiento.pdf',compact('usuario','info'));
-        //$pdf = \PDF::loadView('jovenes-movimiento.pdf');
+        //$pdf = PDF::loadView('jovenes-movimiento.pdf',$usuario,$info);
         //return $pdf->download('FUR.pdf');
+        //return PDF::loadFile(public_path().'/'.)->stream('download.pdf');
     }
 }

@@ -32,6 +32,13 @@
 								</div>
 	    					</div>
 	    					<div class="col-xs-12 col-sm-12 col-md-9 col-lg-12">
+	    						<br>
+	    						<div class="col-md-12 text-md-right">
+									Folio asignado por sistema: {!! $usuario->folio !!}									
+								</div>
+								<div class="col-md-12 text-md-right">
+									Fecha de generación: {!! date('d/m/Y') !!}									
+								</div><br>
 								<div class="col-md-12 text-md-left">
 									1. IDENTIFICACIÓN GEOGRÁFICA
 								</div>
@@ -389,7 +396,106 @@
 									6.3 ¿De qué material es la mayor parte de las paredes o muros de esta vivienda?: {!! $info->cve_material2 !!}
 								</div>
 								<div class="col-md-12 text-md-left">
-									6.4 ¿De qué material es la mayor parte del piso de esta vivienda?: {!! $info-> !!}
+									6.4 ¿De qué material es la mayor parte del piso de esta vivienda?: {!! $info->cve_material3 !!}
+								</div>
+								<div class="col-md-12 text-md-left">
+									6.5 ¿Cuántos cuartos tiene en total esta vivienda, contando la cocina? (no cuente pasillo ni baños): {!! $info->cve_cuartos !!}
+								</div>
+								<div class="col-md-12 text-md-left">
+									6.6 ¿Cuántos cuartos se usan para dormir, sin contar pasillos ni baños?: {!! $info->cuartos_dormir !!}
+								</div>
+								<div class="col-md-12 text-md-left">
+									6.7 En esta vivienda tienen: {!! $info->cve_servicio_agua !!}
+								</div>
+								<div class="col-md-12 text-md-left">
+									6.8 ¿Tienen excusado, retrete, sanitario, letrina u hoyo negro?: {!! $info->excusado !!}
+								</div>
+								<div class="col-md-12 text-md-left">
+									6.9 ¿El servicio sanitario lo comparten con otra vivienda?: {!! $info->sanitario !!}
+								</div>
+								<div class="col-md-12 text-md-left">
+									6.10 El servicio sanitario...  {!! $info->cve_servicio_sandren !!}
+								</div>
+								<div class="col-md-12 text-md-left">
+									6.11 ¿Cuántos baños tienen en esta vivienda?: {!! $info->cve_servicio_sandren2 !!}
+								</div>
+								<div class="col-md-12 text-md-left">
+									6.12 Esta vivienda tiene drenaje o desagüe conectado a... {!! $info->cve_servicio_sandren3 !!}
+								</div>
+								<div class="col-md-12 text-md-left">
+									6.13 En esta vivienda la luz eléctrica la obtienen... {!! $info->cve_servicio_luz !!}
+								</div>
+								<div class="col-md-12 text-md-left">
+									6.14 El combustible que más usan para cocinar es: {!! $info->cve_combustible !!}
+								</div>
+								<div class="col-md-12 text-md-left">
+									6.15 ¿La estufa (fogón) de leña o carboón con la que cocinan, tiene chimenea o algún ducto para sacar el humo de esta vivienda?: {!! $info->fogon !!}
+								</div>
+								<div class="col-md-12 text-md-left">
+									6.16 Esta vivienda cuenta con:
+								</div>
+								<div class="col-md-12 text-md-left">
+									Lavadero: @if($info->lavadero==NULL) N @else S @endif
+								</div>
+								<div class="col-md-12 text-md-left">
+									Fregadero o tarja: @if($info->tarja==NULL) N @else S @endif
+								</div>
+								<div class="col-md-12 text-md-left">
+									Regadera: @if($info->regadera==NULL) N @else S @endif
+								</div>
+								<div class="col-md-12 text-md-left">
+									Tinaco: @if($info->tinaco==NULL) N @else S @endif
+								</div>
+								<div class="col-md-12 text-md-left">
+									Cisterna o aljibe: @if($info->cisterna==NULL) N @else S @endif
+								</div>
+								<div class="col-md-12 text-md-left">
+									Pileta o depósito de agua: @if($info->pileta==NULL) N @else S @endif
+								</div>
+								<div class="col-md-12 text-md-left">
+									Calentador solar de agua: @if($info->calentador_solar==NULL) N @else S @endif
+								</div>
+								<div class="col-md-12 text-md-left">
+									Calentador de gas u otros: @if($info->calentador_gas==NULL) N @else S @endif
+								</div>
+								<div class="col-md-12 text-md-left">
+									Medidor de luz: @if($info->medidor_luz==NULL) N @else S @endif
+								</div>
+								<div class="col-md-12 text-md-left">
+									Bomba de agua: @if($info->bomba_agua==NULL) N @else S @endif
+								</div>
+								<div class="col-md-12 text-md-left">
+									Tanque de gas estacionario: @if($info->tanque_gas==NULL) N @else S @endif
+								</div>
+								<div class="col-md-12 text-md-left">
+									Aire acondicionado: @if($info->aire_acond==NULL) N @else S @endif
+								</div>
+								<div class="col-md-12 text-md-left">
+									Calefacción: @if($info->calefaccion==NULL) N @else S @endif
+								</div>
+								<div class="col-md-12 text-md-left">
+									6.17 ¿Cuántos integrantes de su hogar comparten cuarto dormitorio? (sin contar pasillos): {!!$info->cve_cant4!!}
+								</div>
+								<div class="col-md-12 text-md-left">
+									6.18 Esta vivienda es... {!!$info->cve_casadondevive_es!!}
+								</div>
+								<div class="col-md-12 text-md-left">
+									6.19 ¿Esta vivienda ha sido afectada por algún fenómeno natural?: {!!$info->afectada!!}
+								</div>
+								@if($info->afectada=='S')
+									<div class="col-md-12 text-md-left">
+										¿Cuál?: {!!$info->fenomeno!!}
+									</div>
+								@endif
+								<br>
+								<div class="col-md-12 text-md-justify">
+									Por este medio, yo {!! $usuario->nombre_completo !!} solicito a usted mi registro al PROGRAMA DE DESARROLLO SOCIAL JÓVENES EN MOVIMIENTO, con la finalidad de ser beneficiario del mismo y atender mis necesidades básicas; manifiesto que toda la información contenida es verídica, fehaciente y apegada a la realidad y consiento que se integre el expediente que me indique como beneficiario y verifique la acreditación de los requisitos que establecen en las mismas.
+								</div>
+								<div class="col-md-12 text-md-justify">
+									AUTORIZACIÓN DE USO DE DATOS PERSONALES. Los datos personales recabados serán protegidos, incorporados y tratados en la Base de Datos del Programa de Desarrollo Social JÓVENES EN MOVIMIENTO, información que SI o NO podrá transmitirse con fundamento en lo dispuesto en los artículos 1, 2, 18 y 97 de la Ley de Protección de Datos Personales en Posesión de Sujetos Obligados del Estado de México y Municipios; 21, 22, 23 y 24 de la Ley de Transparencia y Acceso a la Información Pública del Estado de México y Municipios; con las finalidades señaladas en los citados artículos y previa justificación de la misma, además, de otras transmisiones previstas en esta Ley. El interesado podrá ejercer los derechos de acceso, rectificación, cancelación y oposición sobre sus datos indebido de los recursos de este programa deberá ser denunciado y sancionado ante las autoridades conforme a lo que dispone la ley en materia.
+								</div><br><br><br><br>
+								<div class="col-md-12 text-md-justify">
+									NOMBRE Y FIRMA DEL SOLICITANTE
 								</div>
 	    					</div>
 	    				</div>

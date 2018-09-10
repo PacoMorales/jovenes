@@ -207,7 +207,7 @@
 									{!! Form::label('CODIGO_POSTAL','* Código postal') !!}
 								</div>
 								<div class="col-md-2 offset-md-0">
-									{!! Form::text('CODIGO_POSTAL',null,['class' => 'form-control','placeholder' => 'Ej. 50101' ,'required','maxlength' => '5','onkeypress'=>'return soloNumeros(event)']) !!}<h6 style="color:red;">(Sólo números)</h6>
+									{!! Form::text('CODIGO_POSTAL',null,['class' => 'form-control','placeholder' => 'Ej. 50101' ,'required','minlength' => '5','maxlength' => '5','onkeypress'=>'return soloNumeros(event)']) !!}<h6 style="color:red;">(Sólo números)</h6>
 								</div>	
 							</div>
 <!--# DATOS PERSONALES ###############################################################################################################################################################################################################################################################################-->
@@ -347,16 +347,11 @@
 								</div>	
 							</div>
 							<div class = "form-group row">
-								<div class="col-md-12 col-form-label text-md-center" style="color:blue;">
-									{!! Form::label('MENSAJE','Escribe tu clave de identificación oficial únicamente si eres MAYOR DE EDAD.') !!}
-								</div>
-							</div>
-							<div class = "form-group row">
 								<div class="col-md-6 col-form-label text-md-right">
 									{!! Form::label('CVE_ID_OFICIAL','Clave de identificación oficial (OCR)') !!}
 								</div>
 								<div class="col-md-4 offset-md-0">
-									{!! Form::text('CVE_ID_OFICIAL',null,['class' => 'form-control','placeholder' => 'Únicamente si eres mayor de edad','maxlength' => '25','onkeypress'=>'return soloAlfaSE(event)']) !!}
+									{!! Form::text('CVE_ID_OFICIAL',null,['class' => 'form-control','placeholder' => 'Clave OCR de tu identificación','maxlength' => '25','onkeypress'=>'return soloAlfaSE(event)']) !!}
 								</div>	
 							</div>
 

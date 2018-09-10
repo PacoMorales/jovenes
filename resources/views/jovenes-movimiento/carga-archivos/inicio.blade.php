@@ -119,8 +119,8 @@
 	            $(file).val(''); //for clearing with Jquery
 	        } else {
 	        	swal({
-  					title: "Buen trabajo!",
-  					text: "El tamaño de tu documento es adecuado!",
+  					title: "Archivo Aceptado!",
+  					text: "Los archivos se cargaron satisfactoriamente!",
   					icon: "success",
 				});
 	        }
