@@ -120,7 +120,6 @@ class SEDESEM_154 extends Model
             'FECHA_M',
             'USU_M',
             'PW_M',
-            'IP_M',
-            'CVE_ORIGEN'
+            'IP_M'
     ];
 }
