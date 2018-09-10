@@ -310,12 +310,25 @@
 
 							<div class = "form-group row">
 								<div class="col-md-5 col-form-label text-md-right">
-									{!! Form::label('CVE_ACTIVIDAD_LABORAL','* Su empleo actual es') !!}
+									{!! Form::label('CVE_TIPO_EMPLEO','* Su empleo actual es') !!}
+								</div>
+								<div class="col-md-5 offset-md-1">
+									<select class="form-control m-bot15" name="CVE_TIPO_EMPLEO">
+            							@foreach($t_empleo as $tipo_empleo)
+            								<option value="{{ $tipo_empleo->cve_tipo_empleo }}">{{ $tipo_empleo->desc_tipo_empleo }}</option>
+            							@endforeach   
+									</select>
+								</div>	
+							</div>
+
+							<div class = "form-group row">
+								<div class="col-md-5 col-form-label text-md-right">
+									{!! Form::label('CVE_ACTIVIDAD_LABORAL','* ¿En qué trabaja?') !!}
 								</div>
 								<div class="col-md-5 offset-md-1">
 									<select class="form-control m-bot15" name="CVE_ACTIVIDAD_LABORAL">
-            							@foreach($t_empleo as $tipo_empleo)
-            								<option value="{{ $tipo_empleo->cve_tipo_empleo }}">{{ $tipo_empleo->desc_tipo_empleo }}</option>
+            							@foreach($act_lab as $tipo_empleo)
+            								<option value="{{ $tipo_empleo->cve_actividad_laboral }}">{{ $tipo_empleo->actividad_laboral }}</option>
             							@endforeach   
 									</select>
 								</div>	

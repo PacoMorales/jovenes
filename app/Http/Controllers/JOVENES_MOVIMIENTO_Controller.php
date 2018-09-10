@@ -269,6 +269,7 @@ class JOVENES_MOVIMIENTO_Controller extends Controller
         $orfandad       = CAT_ORFANDAD::orderBy('CVE_ORFANDAD','asc')->get();
         $grado_estudios = CAT_GRADO_ESTUDIO::orderBy('CVE_GRADO_ESTUDIOS','asc')->get();
         $t_empleo       = CAT_TIPO_EMPLEO::all();
+        $act_lab        = CAT_ACTIVIDAD_LABORAL::orderBy('ACTIVIDAD_LABORAL','asc')->get();
         $salarios       = CAT_SALARIOS::all();
         $dependientes   = CAT_DEPENDIENTES_ECONOM::all();
         $ingresos       = CAT_PER_INGRESOS::orderBy('CVE_PER_INGRESO','asc')->get();
@@ -279,7 +280,7 @@ class JOVENES_MOVIMIENTO_Controller extends Controller
         $servicio_l     = CAT_SERVICIO_LUZ::all();
         $combustibles   = CAT_COMBUSTIBLES::all();
         $origenes       = CAT_ORIGEN::all(); 
-        return view('jovenes-movimiento.datos-socioeconomicos.inicio-socio',compact('usuario','programa','datos','parentesco','lenguas','cantidades','tiempos','enfermedades','discapacidades','instsalud','orfandad','grado_estudios','t_empleo','salarios','dependientes','ingresos','casas','materiales','servicios_a','sandren','servicio_l','combustibles','origenes'));
+        return view('jovenes-movimiento.datos-socioeconomicos.inicio-socio',compact('usuario','programa','datos','parentesco','lenguas','cantidades','tiempos','enfermedades','discapacidades','instsalud','orfandad','grado_estudios','t_empleo','salarios','dependientes','ingresos','casas','materiales','servicios_a','sandren','servicio_l','combustibles','origenes','act_lab'));
     }
 
     public function capturaInfoSocio(Request $request){
