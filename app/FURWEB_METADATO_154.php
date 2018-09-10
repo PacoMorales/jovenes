@@ -74,10 +74,11 @@ class FURWEB_METADATO_154 extends Model
 
     public static function ValidaEdad($fecha)
     {
-        $fecha_n = new \DateTime($fecha);
+        //$fecha_n = new \DateTime($fecha);
+        $fecha_n = new \DateTime::createFromFormat('m/d/Y',$fecha);
         $hoy = new \DateTime(date('d/m/Y'));
         $fechaOk = $hoy->diff($fecha_n);
-        if($fechaOk->y < 12 || $fechaOk->y > 29){
+        if($fechaOk->y < 18 || $fechaOk->y > 29){
             return false;
         }else{
             return true;
