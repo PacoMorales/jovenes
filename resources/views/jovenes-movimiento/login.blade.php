@@ -25,13 +25,13 @@
 							</div>
 							<div class = "form-group row">
 								<div class="col-md-4 offset-md-0 text-md-center">
-									{!! Form::text('APELLIDO_PATERNO',null,['class' => 'form-control','placeholder' => 'APELLIDO PATERNO' ,'required','onkeypress'=>'return soloLetras(event)']) !!}
+									{!! Form::text('APELLIDO_PATERNO',null,['class' => 'form-control','placeholder' => 'APELLIDO PATERNO' ,'required','minlength' => '4','maxlength' => '50','onkeypress'=>'return soloLetras(event)']) !!}
 								</div>
 								<div class="col-md-4 offset-md-0 text-md-center">
-									{!! Form::text('APELLIDO_MATERNO',null,['class' => 'form-control','placeholder' => 'APELLIDO MATERNO' ,'required','onkeypress'=>'return soloLetras(event)']) !!}
+									{!! Form::text('APELLIDO_MATERNO',null,['class' => 'form-control','placeholder' => 'APELLIDO MATERNO' ,'required','minlength' => '4','maxlength' => '50','onkeypress'=>'return soloLetras(event)']) !!}
 								</div>
 								<div class="col-md-4 offset-md-0 text-md-center">
-									{!! Form::text('NOMBRES',null,['class' => 'form-control','placeholder' => 'NOMBRES' ,'required','onkeypress'=>'return soloLetras(event)']) !!}
+									{!! Form::text('NOMBRES',null,['class' => 'form-control','placeholder' => 'NOMBRES' ,'required','minlength' => '1','maxlength' => '50','onkeypress'=>'return soloLetras(event)']) !!}
 								</div>
 							</div>
 							<div class = "form-group row">
@@ -39,7 +39,7 @@
 									{!! Form::label('LOGIN','* Ingresa correo electrónico') !!}
 								</div>
 								<div class="col-md-4 offset-md-0">
-									{!! Form::email('LOGIN',null,['class' => 'form-control','placeholder' => 'CORREO ELECTRÓNICO' ,'required']) !!}
+									{!! Form::email('LOGIN',null,['class' => 'form-control','placeholder' => 'CORREO ELECTRÓNICO' ,'required','minlength' => '6','maxlength' => '30']) !!}
 								</div>
 							</div>
 							<div class = "form-group row">
@@ -47,7 +47,7 @@
 									{!! Form::label('PASSWORD','* Ingresa una contraseña') !!}
 								</div>
 								<div class="col-md-4 offset-md-0">
-									{!! Form::password('PASSWORD',['class' => 'form-control','placeholder' => 'CONTRASEÑA','required','maxlength' => '30']) !!}
+									{!! Form::password('PASSWORD',['class' => 'form-control','placeholder' => 'CONTRASEÑA','required','minlength' => '6','maxlength' => '30']) !!}
 								</div>
 							</div>
 

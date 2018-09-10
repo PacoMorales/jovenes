@@ -353,7 +353,7 @@
 							</div>
 							<div class = "form-group row">
 								<div class="col-md-6 col-form-label text-md-right">
-									{!! Form::label('CVE_ID_OFICIAL','Clave de identificación oficial') !!}
+									{!! Form::label('CVE_ID_OFICIAL','Clave de identificación oficial (OCR)') !!}
 								</div>
 								<div class="col-md-4 offset-md-0">
 									{!! Form::text('CVE_ID_OFICIAL',null,['class' => 'form-control','placeholder' => 'Únicamente si eres mayor de edad','maxlength' => '25','onkeypress'=>'return soloAlfaSE(event)']) !!}
@@ -403,7 +403,7 @@
 
 							<div class = "form-group row">
 								<div class="col-md-6 col-form-label text-md-right">
-									{!! Form::label('CVE_LUGAR_NACIMIENTO','* Entidad de nacimiento') !!}
+									{!! Form::label('CVE_LUGAR_NACIMIENTO','* Lugar de nacimiento') !!}
 								</div>
 								<div class="col-md-4 offset-md-0">
 									<select class="form-control m-bot15" name="cve_entidad_federativa" required>

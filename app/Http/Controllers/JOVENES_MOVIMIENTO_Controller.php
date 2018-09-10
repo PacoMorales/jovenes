@@ -130,7 +130,7 @@ class JOVENES_MOVIMIENTO_Controller extends Controller
 /***VALIDAR EDAD*****************************************************************************************/
                 $edad = FURWEB_METADATO_154::ValidaEdad($request->FECHA_NACIMIENTO);
                 if($edad == false){
-                    return back()->withErrors(['FECHA_NACIMIENTO' => 'La edad del solicitante debe estar entre los 12 y los 29 años.']);
+                    return back()->withErrors(['FECHA_NACIMIENTO' => 'La edad del solicitante debe estar entre los 18 y los 29 años.']);
                 }else
 /***VALIDAR RFC************************************************************************************/
                     if($request->RFC != NULL){

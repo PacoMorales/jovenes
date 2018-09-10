@@ -221,7 +221,10 @@
 									4.15 El hogar se encuentra en: {!! $info->tipo_zona !!}
 								</div>
 								<div class="col-md-12 text-md-left">
-									4. ¿Actualmente trabaja?: {!! $info->trabaja !!}
+									4.16 ¿Actualmente trabaja?: {!! $info->trabaja !!}
+								</div>
+								<div class="col-md-12 text-md-left">
+									4.17 Su empleo actual es: {!! $info-> !!}
 								</div>
 								<div class="col-md-12 text-md-left">
 									4. ¿?: {!! $info->sexo !!}
