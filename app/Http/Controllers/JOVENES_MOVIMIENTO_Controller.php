@@ -435,7 +435,7 @@ class JOVENES_MOVIMIENTO_Controller extends Controller
         $info    = SEDESEM_154::find($id);
         //dd($usuario);
         //$data = ['title' => 'SECRETARÍA DE DESARROLLO SOCIAL'];
-        //return view('jovenes-movimiento.pdf',compact('usuario','info'));
+        return view('jovenes-movimiento.pdf',compact('usuario','info'));
         //PDF::loadFile(public_path().)->stream();
         //$pdf = PDF::loadView('jovenes-movimiento.pdf',$usuario,$info);
         //return $pdf->download('FUR.pdf');
