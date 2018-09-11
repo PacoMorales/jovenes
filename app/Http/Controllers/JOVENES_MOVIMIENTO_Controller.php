@@ -74,7 +74,7 @@ class JOVENES_MOVIMIENTO_Controller extends Controller
             //$ine->putFile(public_path().'/documentacion/'.$request->FOLIO.'/','INE_Folio'.$request->FOLIO.'_'.$ine->getClientOriginalName());
             //$comp_est->putFile(public_path().'/documentacion/'.$request->FOLIO.'/','COMP-EST_Folio'.$request->FOLIO.'_'.$comp_est->getClientOriginalName());
             $ine->move(public_path().'/documentacion/'.$request->FOLIO.'/','INE_Folio'.$request->FOLIO.'_'.$ine->getClientOriginalName());
-            $comp_est->save(public_path().'/documentacion/'.$request->FOLIO.'/','COMP-EST_Folio'.$request->FOLIO.'_'.$comp_est->getClientOriginalName());
+            $comp_est->move(public_path().'/documentacion/'.$request->FOLIO.'/','COMP-EST_Folio'.$request->FOLIO.'_'.$comp_est->getClientOriginalName());
             $nuevo_doctos = new FURWEB_CONTROL_DOCTOS_154();
             $nuevo_doctos->N_PERIODO            = date('Y');
             $nuevo_doctos->CVE_PROGRAMA         = 154;
