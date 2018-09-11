@@ -74,7 +74,7 @@
 									{!! Form::label('INE','* IFE O INE: ') !!}
 								</div>
 								<div class="col-md-6 offset-md-0">
-									<input type="file" name="INE" id='fileinput' accept="application/pdf" onchange="ValidateSize(this)">
+									<input type="file" name="INE" id='fileinput' accept="application/pdf, application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document, image/*" onchange="ValidateSize(this)">
 								</div>
 							</div>
 							<br>
@@ -83,7 +83,7 @@
 									{!! Form::label('COMP_ESTUDIOS','* COMPROBANTE DE ESTUDIOS: ') !!}
 								</div>
 								<div class="col-md-6 offset-md-0">
-									<input type="file" name="COMP_ESTUDIOS" accept="application/pdf" onchange="ValidateSize(this)">
+									<input type="file" name="COMP_ESTUDIOS" accept="application/pdf, application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document, image/*" onchange="ValidateSize(this)">
 								</div>
 							</div>
 							<br>
