@@ -74,7 +74,7 @@ class JOVENES_MOVIMIENTO_Controller extends Controller
             //$ine->putFile(public_path().'/documentacion/'.$request->FOLIO.'/','INE_Folio'.$request->FOLIO.'_'.$ine->getClientOriginalName());
             //$comp_est->putFile(public_path().'/documentacion/'.$request->FOLIO.'/','COMP-EST_Folio'.$request->FOLIO.'_'.$comp_est->getClientOriginalName());
             $ine->move(public_path().'/documentacion/'.$request->FOLIO.'/','INE_Folio'.$request->FOLIO.'_'.$ine->getClientOriginalName());
-            $comp_est->save(public_path().'/documentacion/'.$request->FOLIO.'/','COMP-EST_Folio'.$request->FOLIO.'_'.$comp_est->getClientOriginalName());
+            $comp_est->move(public_path().'/documentacion/'.$request->FOLIO.'/','COMP-EST_Folio'.$request->FOLIO.'_'.$comp_est->getClientOriginalName());
             $nuevo_doctos = new FURWEB_CONTROL_DOCTOS_154();
             $nuevo_doctos->N_PERIODO            = date('Y');
             $nuevo_doctos->CVE_PROGRAMA         = 154;
@@ -435,7 +435,7 @@ class JOVENES_MOVIMIENTO_Controller extends Controller
         $info    = SEDESEM_154::find($id);
         //dd($usuario);
         //$data = ['title' => 'SECRETARÍA DE DESARROLLO SOCIAL'];
-        //return view('jovenes-movimiento.pdf',compact('usuario','info'));
+        return view('jovenes-movimiento.pdf',compact('usuario','info'));
         //PDF::loadFile(public_path().)->stream();
         //$pdf = PDF::loadView('jovenes-movimiento.pdf',$usuario,$info);
         //return $pdf->download('FUR.pdf');
