@@ -19,8 +19,8 @@
 								<div class="form-group row mb-0 text-md-center">
 									<div class="col-md-8 offset-md-2">
 										<p>¡Bien!</p>
-										<p>{{$usuario->NOMBRES}} tus información ha sido registrada.</p>
-										<p>Tu folio es: imej-{{ $usuario->FOLIO }}.</p>
+										<p>{{$usuario->nombres}} tus información ha sido registrada.</p>
+										<p>Tu folio es: imej-{{ $usuario->folio }}.</p>
 
 										<p>Guarda esta pantalla por medio de una captura, ya que será tu comprobante de alta.</p>
 									</div>
