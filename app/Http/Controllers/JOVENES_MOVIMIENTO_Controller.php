@@ -523,7 +523,7 @@ class JOVENES_MOVIMIENTO_Controller extends Controller
                         Flash::warning("Registro de Datos Socioeconómicos: Incompleto!.")->important();
                         return view('jovenes-movimiento.datos-socioeconomicos.inicio-socio',compact('usuario','programa','datos','parentesco','lenguas','cantidades','tiempos','enfermedades','discapacidades','instsalud','orfandad','grado_estudios','t_empleo','salarios','dependientes','ingresos','casas','materiales','servicios_a','sandren','servicio_l','combustibles','origenes','act_lab'));
                     }
-                    //dd($existeDatosSoc);
+                    $existeDatosSoc=$existeDatSoc[0];
                     if($existeDatosSoc->count() > 0){
                         return back()->withInput()->withErrors(['CURP' => 'El usuario con correo electrónico '.$request->LOGIN.' ha completado su registro.']);
                     }else{
