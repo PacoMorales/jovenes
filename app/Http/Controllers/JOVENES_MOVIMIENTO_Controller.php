@@ -603,7 +603,8 @@ class JOVENES_MOVIMIENTO_Controller extends Controller
     }
 
     public function info($id){
-        $usuario = FURWEB_CTRL_ACCESO_154::where('FOLIO',$id)->get();
+        $usu = FURWEB_CTRL_ACCESO_154::where('FOLIO',$id)->get();
+        $usuario=$usu[0];
         return view('jovenes-movimiento.registrado',compact('usuario'));
     }
 
