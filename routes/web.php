@@ -32,6 +32,9 @@ Route::get('/', function (){
 		Route::get('nuevo/crea-tu-cuenta/datos-socioeconomicos/{id}','JOVENES_MOVIMIENTO_Controller@altaInfoSocio')->name('beneficiario.apartado-b');
 		Route::post('nueva/cuenta/datos-socioeconomicos','JOVENES_MOVIMIENTO_Controller@capturaInfoSocio')->name('beneficiario.capturaInfoSoc');
 
+		Route::get('usuario/completa-tu-registro','JOVENES_MOVIMIENTO_Controller@vistaconcluirRegistro')->name('beneficiario.concluir');
+		Route::post('usuario/completa-tu-registro/continuar','JOVENES_MOVIMIENTO_Controller@concluirRegistro')->name('beneficiario.continuar');
+
 		Route::get('registro-completo/informacion-adicional/{id}','JOVENES_MOVIMIENTO_Controller@info')->name('beneficiario.info');
 		Route::get('registro-completo/generar-pdf/{id}','JOVENES_MOVIMIENTO_Controller@generarPDF')->name('generar.miPDF');
 	});

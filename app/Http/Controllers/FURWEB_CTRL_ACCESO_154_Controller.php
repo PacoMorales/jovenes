@@ -12,7 +12,7 @@ use App\FURWEB_FINANZAS_154;
 use Laracasts\Flash\Flash;
 
 class FURWEB_CTRL_ACCESO_154_Controller extends Controller{
-	public function altaBeneficiario(){
+	public function altaBeneficiario(){ 
     	return view('jovenes-movimiento.login');
     }
 

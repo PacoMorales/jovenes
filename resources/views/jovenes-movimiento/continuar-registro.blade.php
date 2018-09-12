@@ -1,13 +1,13 @@
 @extends('mainjm')
 
-@section('title','Crea tu cuenta')
+@section('title','Continuar registro')
 
 @section('header')
 @endsection
 
 @section('content')
 
-	{!! Form::open(['route' => 'beneficiario.captura', 'method' => 'POST']) !!}
+	{!! Form::open(['route' => 'beneficiario.continuar', 'method' => 'POST']) !!}
 		<div class="container">
 			<div class="row justify-content-center">
 				<div class="col-md-8">
@@ -19,22 +19,6 @@
 						</div>
 						<br>
 							<div class = "form-group row">
-								<div class="col-md-12 col-form-label text-md-center">
-									{!! Form::label('NOMBRE_COMPLETO','* Ingresa tu nombre completo') !!}
-								</div>
-							</div>
-							<div class = "form-group row">
-								<div class="col-md-4 offset-md-0 text-md-center">
-									{!! Form::text('APELLIDO_PATERNO',null,['class' => 'form-control','placeholder' => 'APELLIDO PATERNO' ,'required','minlength' => '4','maxlength' => '50','onkeypress'=>'return soloLetras(event)']) !!}
-								</div>
-								<div class="col-md-4 offset-md-0 text-md-center">
-									{!! Form::text('APELLIDO_MATERNO',null,['class' => 'form-control','placeholder' => 'APELLIDO MATERNO' ,'required','minlength' => '4','maxlength' => '50','onkeypress'=>'return soloLetras(event)']) !!}
-								</div>
-								<div class="col-md-4 offset-md-0 text-md-center">
-									{!! Form::text('NOMBRES',null,['class' => 'form-control','placeholder' => 'NOMBRES' ,'required','minlength' => '1','maxlength' => '50','onkeypress'=>'return soloLetras(event)']) !!}
-								</div>
-							</div>
-							<div class = "form-group row">
 								<div class="col-md-6 col-form-label text-md-right">
 									{!! Form::label('LOGIN','* Ingresa correo electrónico') !!}
 								</div>
@@ -44,13 +28,12 @@
 							</div>
 							<div class = "form-group row">
 								<div class="col-md-6 col-form-label text-md-right">
-									{!! Form::label('PASSWORD','* Ingresa una contraseña') !!}
+									{!! Form::label('PASSWORD','* Ingresa tu contraseña') !!}
 								</div>
 								<div class="col-md-4 offset-md-0">
 									{!! Form::password('PASSWORD',['class' => 'form-control','placeholder' => 'CONTRASEÑA','required','minlength' => '6','maxlength' => '30']) !!}
 								</div>
 							</div>
-
 							@if(count($errors) > 0)
 								<div class="alert alert-danger" role="alert">
 									<ul>
@@ -67,10 +50,6 @@
 							</div>
 							{!! Form::close() !!}
 							<br>
-							<div class="col-md-9 offset-md-2 text-md-center">
-								<h5 style="color:blue;">Concluir trámite!</h5>
-								<p>Haz <a href="{{ route('beneficiario.concluir') }}"> clic aquí</a> para concluir tu trámite.</p>
-							</div>
                         	<div class="col-md-9 offset-md-2 text-md-center">
 								<h5 style="color:green;">¿Quieres saber más sobre este Programa Social?</h5>
 								<p>Te invitamos a visitar nuestra <a href="btn btn-link" onclick="window.open('http://imej.edomex.gob.mx/jovenes')">página oficial</a>, ahí encontrarás toda la información.</p>
@@ -97,23 +76,4 @@
 	<div class="text-md-center">
 		<a class="btn btn-link"  onclick="window.open('http://imej.edomex.gob.mx/acerca-de/aviso-privacidad');"><i class="fa fa-info-circle"></i> Aviso de privacidad</a>
 	</div>
-	<script type="text/javascript">
-		function soloLetras(e){
-	       key = e.keyCode || e.which;
-	       tecla = String.fromCharCode(key);
-	       letras = "abcdefghijklmnñopqrstuvwxyz ABCDEFGHIJKLMNÑOPQRSTUVWXYZ";
-	       especiales = "8-37-39-46";
-
-	       tecla_especial = false
-	       for(var i in especiales){
-	            if(key == especiales[i]){
-	                tecla_especial = true;
-	                break;
-	            }
-	        }
-	        if(letras.indexOf(tecla)==-1 && !tecla_especial){
-	            return false;
-	        }
-	    }
-	</script>
 @endsection

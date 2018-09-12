@@ -9,6 +9,7 @@ use App\SEDESEM_154;
 use App\FURWEB_METADATO_154;
 use App\FURWEB_CONTROL_DOCTOS_154;
 use PDF;
+use Laracasts\Flash\Flash;
 use App\CAT_PROGRAMAS;
 use App\CAT_ACTIVIDAD_LABORAL;
 use App\CAT_RED_SOCIAL;
@@ -107,6 +108,9 @@ class JOVENES_MOVIMIENTO_Controller extends Controller
 
    	public function capturaInfoPersonal(Request $request){
 /***VALIDAR NOMBRES Y APELLIDOS****************************************************************************/
+        if(FURWEB_CTRL_ACCESO_154::validaNombre($request->PRIMER_PATERNO,date('d/m/Y'))==false){
+            return back()->withInput()->withErrors(['FOLIO' => 'El APELLIDO PATERNO '.$request->APELLIDO_PATERNO.' no corresponde al dia '.date('d/m/Y').' de registro.']);         
+        }
         if(FURWEB_METADATO_154::validaNombres($request->PRIMER_APELLIDO)==false){
             return back()->withInput()->withErrors(['PRIMER_APELLIDO' => 'El PRIMER APELLIDO '.$request->PRIMER_APELLIDO.' contiene caracteres inválidos. Favor de verificar.']);
         }else
@@ -423,11 +427,184 @@ class JOVENES_MOVIMIENTO_Controller extends Controller
         }*/
         //return redirect()->route('usuario.show',$nuevo_registro->FOLIO);
         $nuevo_registro->save();
-        return redirect()->route('beneficiario.info',$request->CVE_ORIGEN);
+        return redirect()->route('beneficiario.info',$request->FOLIO);
+    }
+
+    public function vistaconcluirRegistro(){
+        //dd('Entro aca');
+        return view('jovenes-movimiento.continuar-registro');
+    }
+
+    public function concluirRegistro(Request $request){
+        //dd($request->all());
+        $existeLog = FURWEB_CTRL_ACCESO_154::where('LOGIN','like','%'.$request->LOGIN.'%')
+                                                ->where('PASSWORD','like','%'.$request->PASSWORD.'%')
+                                                ->get();
+        if($existeLog->count() <= 0){
+            return back()->withInput()->withErrors(['CURP' => 'El usuario con el correo electrónico '.$request->LOGIN.' no se encuentra registrado.']);
+        }
+        $existeLogin = $existeLog[0];
+/***VALIDA NOMBRE**************************************************************/
+        if(FURWEB_CTRL_ACCESO_154::validaNombre($existeLogin->ap_paterno,date('d/m/Y'))==false){
+            return back()->withInput()->withErrors(['FOLIO' => 'El apellido paterno '.$existeLogin->ap_paterno.' que se ingreso no corresponde al dia '.date('d/m/Y').' de registro.']);
+        }
+/*****************************************************************/            
+        if($existeLogin->count() > 0){
+            //SI YA ESTA REGISTRADO EN FURWEB_CTRL_ACCESO_154
+            //dd($existeLogin);
+            $existeArch = FURWEB_CONTROL_DOCTOS_154::where('FOLIO',$existeLogin->folio)->get();
+            //dd($existeArch[0]);
+            if($existeArch->count() <= 0){
+                //MANDA A CARGAR ARCHIVOS
+                $usu = FURWEB_CTRL_ACCESO_154::select('FOLIO','LOGIN')->where('LOGIN','like','%'.$request->LOGIN.'%')->where('PASSWORD','like','%'.$request->PASSWORD.'%')->get();
+                $usuario = $usu[0];
+                $programa = CAT_PROGRAMAS::find(154);
+                Flash::success("Registro de Cuenta de Correo y Contraseña: Hecho!.")->important();
+                Flash::warning("Carga de Archivo: Incompleto!.")->important();
+                Flash::warning("Registro de Datos Personales: Incompleto!.")->important();
+                Flash::warning("Registro de Datos Socioeconómicos: Incompleto!.")->important();
+                return view('jovenes-movimiento.carga-archivos.inicio',compact('usuario','programa'));
+            }
+            $existeArchivos = $existeArch[0];
+            if($existeArchivos->count() > 0){
+                // SI YA EXISTE
+                $existeDatPer = FURWEB_METADATO_154::where('FOLIO',$existeArchivos->folio)->get();
+                if($existeDatPer->count() <= 0){
+                    //dd('NO ESTA REGISTRADO EN DATOS PERSONALES');
+                    $usu = FURWEB_CTRL_ACCESO_154::select('FOLIO','LOGIN')->where('LOGIN','like','%'.$request->LOGIN.'%')->where('PASSWORD','like','%'.$request->PASSWORD.'%')->get();
+                    $usuario = $usu[0];
+                    $programa = CAT_PROGRAMAS::find(154);
+                    $municipios = CAT_MUNICIPIOS_SEDESEM::select('MUNICIPIOID', 'MUNICIPIONOMBRE')->where('ENTIDADFEDERATIVAID',15)->orderBy('MUNICIPIONOMBRE','asc')->get();
+                    $nacionalidad = CAT_NACIONALIDADES::all();
+                    $edo_civil = CAT_ESTADO_CIVIL::all();
+                    $entidad_fed = CAT_ENTIDAD_FEDERATIVA::all();  
+                    $redes = CAT_RED_SOCIAL::all();
+                    Flash::success("Registro de Cuenta de Correo y Contraseña: Hecho!.")->important();
+                    Flash::success("Carga de Archivo: Hecho!.")->important();
+                    Flash::warning("Registro de Datos Personales: Incompleto!.")->important();
+                    Flash::warning("Registro de Datos Socioeconómicos: Incompleto!.")->important(); 
+                    return view('jovenes-movimiento.datos-personales.inicio', compact('usuario','programa','municipios','nacionalidad','edo_civil','entidad_fed','redes'));
+                }
+                $existeDatosPer = $existeDatPer[0];
+                if($existeDatosPer->count() > 0){
+                    //SI YA EXISTE
+                    $existeDatSoc = SEDESEM_154::where('FOLIO',$existeDatosPer->folio)->get();
+                    if($existeDatPer->count() <= 0){
+                        //dd('NO ESTA REGISTRADO EN DATOS SOCIOECONOMICOS');
+                        $usu = FURWEB_CTRL_ACCESO_154::select('FOLIO','LOGIN')->where('LOGIN','like','%'.$request->LOGIN.'%')->where('PASSWORD','like','%'.$request->PASSWORD.'%')->get();
+                        $usuario = $usu[0];
+                        $dato           = FURWEB_METADATO_154::select('NOMBRES')->where('USU','like','%'.$request->LOGIN.'%')->get();
+                        $datos = $dato[0];
+                        $programa       = CAT_PROGRAMAS::find(154);
+                        $parentesco     = CAT_PARENTESCO::orderBy('CVE_PARENTESCO','asc')->get();
+                        $lenguas        = CAT_LENGUAS::all();
+                        $cantidades     = CAT_CANTIDADES::all();
+                        $tiempos        = CAT_TIEMPO_RADICAR::all();
+                        $enfermedades   = CAT_ENFERMEDADES::all();
+                        $discapacidades = CAT_DISCAPACIDAD::all();
+                        $instsalud      = CAT_INST_SALUD::all();
+                        $orfandad       = CAT_ORFANDAD::orderBy('CVE_ORFANDAD','asc')->get();
+                        $grado_estudios = CAT_GRADO_ESTUDIO::orderBy('CVE_GRADO_ESTUDIOS','asc')->get();
+                        $t_empleo       = CAT_TIPO_EMPLEO::all();
+                        $act_lab        = CAT_ACTIVIDAD_LABORAL::orderBy('CVE_ACTIVIDAD_LABORAL','asc')->get();
+                        $salarios       = CAT_SALARIOS::all();
+                        $dependientes   = CAT_DEPENDIENTES_ECONOM::all();
+                        $ingresos       = CAT_PER_INGRESOS::orderBy('CVE_PER_INGRESO','asc')->get();
+                        $casas          = CAT_CASADONDEVIVE_ES::orderBy('CVE_CASADONDEVIVE_ES','asc')->get();
+                        $materiales     = CAT_MATERIAL_VIVIENDA::orderBy('CVE_MATERIAL','asc')->get();
+                        $servicios_a    = CAT_SERVICIO_AGUA::all();
+                        $sandren        = CAT_SERVICIO_SANDREN::all();
+                        $servicio_l     = CAT_SERVICIO_LUZ::all();
+                        $combustibles   = CAT_COMBUSTIBLES::all();
+                        $origenes       = CAT_ORIGEN::all();
+                        Flash::success("Registro de Cuenta de Correo y Contraseña: Hecho!.")->important();
+                        Flash::success("Carga de Archivo: Hecho!.")->important();
+                        Flash::success("Registro de Datos Personales: Hecho!.")->important();
+                        Flash::warning("Registro de Datos Socioeconómicos: Incompleto!.")->important();
+                        return view('jovenes-movimiento.datos-socioeconomicos.inicio-socio',compact('usuario','programa','datos','parentesco','lenguas','cantidades','tiempos','enfermedades','discapacidades','instsalud','orfandad','grado_estudios','t_empleo','salarios','dependientes','ingresos','casas','materiales','servicios_a','sandren','servicio_l','combustibles','origenes','act_lab'));
+                    }
+                    //dd($existeDatosSoc);
+                    if($existeDatosSoc->count() > 0){
+                        return back()->withInput()->withErrors(['CURP' => 'El usuario con correo electrónico '.$request->LOGIN.' ha completado su registro.']);
+                    }else{
+                        $usu = FURWEB_CTRL_ACCESO_154::select('FOLIO','LOGIN')->where('LOGIN','like','%'.$request->LOGIN.'%')->where('PASSWORD','like','%'.$request->PASSWORD.'%')->get();
+                        $usuario = $usu[0];
+                        $dato           = FURWEB_METADATO_154::select('NOMBRES')->where('USU','like','%'.$request->LOGIN.'%')->get();
+                        $datos = $dato[0];
+                        $programa       = CAT_PROGRAMAS::find(154);
+                        $parentesco     = CAT_PARENTESCO::orderBy('CVE_PARENTESCO','asc')->get();
+                        $lenguas        = CAT_LENGUAS::all();
+                        $cantidades     = CAT_CANTIDADES::all();
+                        $tiempos        = CAT_TIEMPO_RADICAR::all();
+                        $enfermedades   = CAT_ENFERMEDADES::all();
+                        $discapacidades = CAT_DISCAPACIDAD::all();
+                        $instsalud      = CAT_INST_SALUD::all();
+                        $orfandad       = CAT_ORFANDAD::orderBy('CVE_ORFANDAD','asc')->get();
+                        $grado_estudios = CAT_GRADO_ESTUDIO::orderBy('CVE_GRADO_ESTUDIOS','asc')->get();
+                        $t_empleo       = CAT_TIPO_EMPLEO::all();
+                        $act_lab        = CAT_ACTIVIDAD_LABORAL::orderBy('CVE_ACTIVIDAD_LABORAL','asc')->get();
+                        $salarios       = CAT_SALARIOS::all();
+                        $dependientes   = CAT_DEPENDIENTES_ECONOM::all();
+                        $ingresos       = CAT_PER_INGRESOS::orderBy('CVE_PER_INGRESO','asc')->get();
+                        $casas          = CAT_CASADONDEVIVE_ES::orderBy('CVE_CASADONDEVIVE_ES','asc')->get();
+                        $materiales     = CAT_MATERIAL_VIVIENDA::orderBy('CVE_MATERIAL','asc')->get();
+                        $servicios_a    = CAT_SERVICIO_AGUA::all();
+                        $sandren        = CAT_SERVICIO_SANDREN::all();
+                        $servicio_l     = CAT_SERVICIO_LUZ::all();
+                        $combustibles   = CAT_COMBUSTIBLES::all();
+                        $origenes       = CAT_ORIGEN::all();
+                        Flash::success("Registro de Cuenta de Correo y Contraseña: Hecho!.")->important();
+                        Flash::success("Carga de Archivo: Hecho!.")->important();
+                        Flash::success("Registro de Datos Personales: Hecho!.")->important();
+                        Flash::warning("Registro de Datos Socioeconómicos: Incompleto!.")->important();
+                        return view('jovenes-movimiento.datos-socioeconomicos.inicio-socio',compact('usuario','programa','datos','parentesco','lenguas','cantidades','tiempos','enfermedades','discapacidades','instsalud','orfandad','grado_estudios','t_empleo','salarios','dependientes','ingresos','casas','materiales','servicios_a','sandren','servicio_l','combustibles','origenes','act_lab'));
+                        //EN LA BITACORA SE DEBE REGISTRAR
+                        //Proceso 2 [Gestión]
+                        //Subproceso 2001 [Autenticación de Usuario]
+                        //Transacción 4 [Registro de Datos Socioeconomicos]
+                        //MANDARLOS A DATOS SOCIOECONOMICOS
+                    }
+                }else{//SI NO EXISTE, MANDARLOS A DATOS PERSONALES
+                    $usu = FURWEB_CTRL_ACCESO_154::select('FOLIO','LOGIN')->where('LOGIN','like','%'.$request->LOGIN.'%')->where('PASSWORD','like','%'.$request->PASSWORD.'%')->get();
+                    $usuario = $usu[0];
+                    $programa = CAT_PROGRAMAS::find(154);
+                    $municipios = CAT_MUNICIPIOS_SEDESEM::select('MUNICIPIOID', 'MUNICIPIONOMBRE')->where('ENTIDADFEDERATIVAID',15)->orderBy('MUNICIPIONOMBRE','asc')->get();
+                    $nacionalidad = CAT_NACIONALIDADES::all();
+                    $edo_civil = CAT_ESTADO_CIVIL::all();
+                    $entidad_fed = CAT_ENTIDAD_FEDERATIVA::all();  
+                    $redes = CAT_RED_SOCIAL::all();
+                    Flash::success("Registro de Cuenta de Correo y Contraseña: Hecho!.")->important();
+                    Flash::success("Carga de Archivo: Hecho!.")->important();
+                    Flash::warning("Registro de Datos Personales: Incompleto!.")->important();
+                    Flash::warning("Registro de Datos Socioeconómicos: Incompleto!.")->important();
+                    return view('jovenes-movimiento.datos-personales.inicio', compact('usuario','programa','municipios','nacionalidad','edo_civil','entidad_fed','redes'));
+                    //EN LA BITACORA SE DEBE REGISTRAR
+                    //Proceso 2 [Gestión]
+                    //Subproceso 2001 [Autenticación de Usuario]
+                    //Transacción 3 [Registro de Datos Personales]
+                }
+            }else{//SI NO EXISTE, MANDARLOS A CARGA DE ARCHIVO
+                $usu = FURWEB_CTRL_ACCESO_154::select('FOLIO','LOGIN')->where('LOGIN','like','%'.$request->LOGIN.'%')->where('PASSWORD','like','%'.$request->PASSWORD.'%')->get();
+                $usuario = $usu[0];
+                $programa = CAT_PROGRAMAS::find(154);
+                Flash::success("Registro de Cuenta de Correo y Contraseña: Hecho!.")->important();
+                Flash::warning("Carga de Archivo: Incompleto!.")->important();
+                Flash::warning("Registro de Datos Personales: Incompleto!.")->important();
+                Flash::warning("Registro de Datos Socioeconómicos: Incompleto!.")->important();
+                return view('jovenes-movimiento.carga-archivos.inicio',compact('usuario','programa'));
+                //EN LA BITACORA SE DEBE REGISTRAR
+                //Proceso 2 [Gestión]
+                //Subproceso 2001 [Autenticación de Usuario]
+                //Transacción 68 [Registro de Documentos]
+            }
+        }else{ //SI NO EXISTE
+            return back()->withInput()->withErrors(['CURP' => 'El correo electrónico '.$request->LOGIN.' no está registrado. Favor de realizar el respectivo registro.']);
+        }
     }
 
     public function info($id){
-        return view('jovenes-movimiento.registrado');
+        $usuario = FURWEB_CTRL_ACCESO_154::where('FOLIO',$id)->get();
+        return view('jovenes-movimiento.registrado',compact('usuario'));
     }
 
    public function generarPDF($id){
@@ -435,10 +612,10 @@ class JOVENES_MOVIMIENTO_Controller extends Controller
         $info    = SEDESEM_154::find($id);
         //dd($usuario);
         //$data = ['title' => 'SECRETARÍA DE DESARROLLO SOCIAL'];
-        return view('jovenes-movimiento.pdf',compact('usuario','info'));
-        //PDF::loadFile(public_path().)->stream();
-        //$pdf = PDF::loadView('jovenes-movimiento.pdf',$usuario,$info);
-        //return $pdf->download('FUR.pdf');
+        //return view('jovenes-movimiento.pdf',compact('usuario','info'));
+        //
+        $pdf = PDF::loadView('jovenes-movimiento.pdf',compact('usuario','info'));
+        return $pdf->download('FUR.pdf');
         //return PDF::loadFile(public_path().'/'.)->stream('download.pdf');
     }
 }
