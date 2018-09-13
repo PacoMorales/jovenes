@@ -110,19 +110,28 @@
 	        var FileSize = file.files[0].size / 1024 / 1024; // in MB
 	        //alert(file.files[0].size);
 	        //alert(FileSize);
-	        if (FileSize > 0.20000000) {
+	        if (FileSize <= 0) {
 	            swal({
-  					title: "Tamaño excedido!",
-  					text: "El tamaño de tu documento excede los 200KB!",
+  					title: "Archivo incorrecto!",
+  					text: "El tamaño de tu documento es de 0KB!",
   					icon: "error",
 				});
 	            $(file).val(''); //for clearing with Jquery
-	        } else {
-	        	swal({
-  					title: "Archivo Aceptado!",
-  					text: "Los archivos se cargaron satisfactoriamente!",
-  					icon: "success",
-				});
+	        }else{
+	        	if (FileSize > 0.20000000) {
+	            	swal({
+  						title: "Tamaño excedido!",
+  						text: "El tamaño de tu documento excede los 200KB!",
+  						icon: "error",
+					});
+	            	$(file).val(''); //for clearing with Jquery
+	        	} else {
+	        		swal({
+	  					title: "Archivo Aceptado!",
+  						text: "Los archivos se cargaron satisfactoriamente!",
+  						icon: "success",
+					});
+				}
 	        }
 	    }
 </script>
