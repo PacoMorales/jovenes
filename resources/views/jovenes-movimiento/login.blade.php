@@ -68,7 +68,7 @@
 							{!! Form::close() !!}
 							<br>
 							<div class="col-md-9 offset-md-2 text-md-center">
-								<h5 style="color:blue;">Concluir trámite!</h5>
+								<h5 style="color:blue;">Verificar y concluir trámite!</h5>
 								<p>Haz <a href="{{ route('beneficiario.concluir') }}"> clic aquí</a> para concluir tu trámite.</p>
 							</div>
                         	<div class="col-md-9 offset-md-2 text-md-center">

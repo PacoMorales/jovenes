@@ -76,7 +76,7 @@ class FURWEB_METADATO_154 extends Model
     {
         //$fecha_n = new \DateTime($fecha);
         $fecha_n = \DateTime::createFromFormat('m/d/Y',$fecha);
-        $hoy = new \DateTime(date('d/m/Y'));
+        $hoy = \DateTime::createFromFormat('m/d/Y',date('d/m/Y'));
         $fechaOk = $hoy->diff($fecha_n);
         if($fechaOk->y < 18 || $fechaOk->y > 29){
             return false;
