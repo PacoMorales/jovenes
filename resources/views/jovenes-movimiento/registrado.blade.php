@@ -22,7 +22,8 @@
 										<p>{{$usuario->nombres}} tu información ha sido registrada.</p>
 										<p>Tu folio es: imej-{{ $usuario->folio }}.</p>
 
-										<p>Guarda esta pantalla por medio de una captura, ya que será tu comprobante de alta.</p>
+										<p>No olvides descargar tu comprobante de registro.</p>
+										<a href="{{ route('generar.miPDF',$usuario->folio) }}" class="btn btn-danger">Descargar Comprobante de Registro en formato PDF <i class="fa fa-file"></i></a>
 									</div>
 								</div>
 						</div>
