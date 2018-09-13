@@ -45,7 +45,7 @@
 							@endif
 							<div class="form-group row mb-0">
 								<div class="col-md-6 offset-md-5">
-									{!! Form::submit('Crear cuenta!',['class' => 'btn btn-success']) !!}
+									{!! Form::submit('Concluir registro!',['class' => 'btn btn-info']) !!}
 								</div>
 							</div>
 							{!! Form::close() !!}
