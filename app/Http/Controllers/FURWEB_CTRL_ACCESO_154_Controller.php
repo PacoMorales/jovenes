@@ -22,6 +22,7 @@ class FURWEB_CTRL_ACCESO_154_Controller extends Controller{
 	   	}
 	    $existe = FURWEB_CTRL_ACCESO_154::select('LOGIN')
 	    								  ->where('LOGIN','like','%'.$request->LOGIN.'%')
+	    								  ->where('PASSWORD','like','%'.$request->PASSWORD.'%')
 	    								  ->get();
 	    if($existe->count() >= 1){
 			return back()->withInput()->withErrors(['FOLIO' => 'El LOGIN '.$request->LOGIN.' ya ha sido registrado, favor de verificarlo.']);    	
