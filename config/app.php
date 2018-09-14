@@ -167,7 +167,7 @@ return [
         Laracasts\Flash\FlashServiceProvider::class,
         Yajra\Oci8\Oci8ServiceProvider::class,
         //Krlove\EloquentModelGenerator\Provider\GeneratorServiceProvider::class,
-        Barryvdh\DomPDF\ServiceProvider::class,
+        //Barryvdh\DomPDF\ServiceProvider::class,
 
     ],
 
@@ -222,7 +222,7 @@ return [
         'Html' => Collective\Html\HtmlFacade::class,
         'Flash'=> Laracast\Flash\Flash::class,
         'PDF'  => Barryvdh\DomPDF\Facade::class, 
-        'ConexionOracle' => Illuminate\Database\ConexionOracle\Conexion::class,
+        //'ConexionOracle' => Illuminate\Database\ConexionOracle\Conexion::class,
 
     ],
 
