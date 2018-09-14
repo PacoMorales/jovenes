@@ -40,7 +40,7 @@ $(document).ready(function(){
 
 	document.getElementById("habla-lengua-no").checked=true;
 	$("#habla-lengua-si").change(function(){
-		$("#habla-lengua").load("/imej/public/js/apartado_a/Contenido/contenido-lengua.php");
+		$("#habla-lengua").load("/jovenes/public/js/apartado_a/Contenido/contenido-lengua.php");
 	});	
 	$("#habla-lengua-no").change(function(){
 		$("#habla-lengua").html("");///abre
@@ -48,7 +48,7 @@ $(document).ready(function(){
 	
 	document.getElementById("delito-no").checked=true;
 	$("#delito-yes").change(function(){
-		$("#respuesta-delito").load("/imej/public/js/apartado_a/Contenido/contenido_asalto.php");
+		$("#respuesta-delito").load("/jovenes/public/js/apartado_a/Contenido/contenido_asalto.php");
 	});	
 	$("#delito-no").change(function(){
 		$("#respuesta-delito").html("");///abre
@@ -56,7 +56,7 @@ $(document).ready(function(){
 
 	document.getElementById("embarazo-no").checked=true;
 	$("#embarazo-si").change(function(){
-		$("#respuesta-embarazo").load("/imej/public/js/apartado_a/Contenido/contenido_embarazo.php");
+		$("#respuesta-embarazo").load("/jovenes/public/js/apartado_a/Contenido/contenido_embarazo.php");
 	});	
 	$("#embarazo-no").change(function(){
 		$("#respuesta-embarazo").html("");///abre
@@ -64,8 +64,8 @@ $(document).ready(function(){
 
 	document.getElementById("algun-ingreso-no").checked=true;
 	$("#algun-ingreso-si").change(function(){
-		$("#respuesta-tipo").load("/imej/public/js/apartado_a/Contenido/contenido_algun_ingreso.php");
-		$("#respuesta-monto").load("/imej/public/js/apartado_a/Contenido/contenido_algun_ingreso_monto.php");
+		$("#respuesta-tipo").load("/jovenes/public/js/apartado_a/Contenido/contenido_algun_ingreso.php");
+		$("#respuesta-monto").load("/jovenes/public/js/apartado_a/Contenido/contenido_algun_ingreso_monto.php");
 	});	
 	$("#algun-ingreso-no").change(function(){
 		$("#respuesta-tipo").html("");
@@ -74,7 +74,7 @@ $(document).ready(function(){
 
 	document.getElementById("alquiler-terreno-no").checked=true;
 	$("#alquiler-terreno-si").change(function(){
-		$("#respuesta-terreno").load("/imej/public/js/apartado_a/Contenido/contenido_alquiler_terreno.php");
+		$("#respuesta-terreno").load("/jovenes/public/js/apartado_a/Contenido/contenido_alquiler_terreno.php");
 	});	
 	$("#alquiler-terreno-no").change(function(){
 		$("#respuesta-terreno").html("");///abre
@@ -82,7 +82,7 @@ $(document).ready(function(){
 
 	document.getElementById("pension-no").checked=true;
 	$("#pension-si").change(function(){
-		$("#respuesta-pension").load("/imej/public/js/apartado_a/Contenido/contenido_pension.php");
+		$("#respuesta-pension").load("/jovenes/public/js/apartado_a/Contenido/contenido_pension.php");
 	});	
 	$("#pension-no").change(function(){
 		$("#respuesta-pension").html("");///abre
@@ -90,8 +90,8 @@ $(document).ready(function(){
 
 	document.getElementById("apoyo-no").checked=true;
 	$("#apoyo-si").change(function(){
-		$("#respuesta-cual").load("/imej/public/js/apartado_a/Contenido/contenido_cual_apoyo.php");
-		$("#respuesta-cuantos").load("/imej/public/js/apartado_a/Contenido/contenido_cuantos_apoyos.php");
+		$("#respuesta-cual").load("/jovenes/public/js/apartado_a/Contenido/contenido_cual_apoyo.php");
+		$("#respuesta-cuantos").load("/jovenes/public/js/apartado_a/Contenido/contenido_cuantos_apoyos.php");
 	});	
 	$("#apoyo-no").change(function(){
 		$("#respuesta-cual").html("");
@@ -100,10 +100,10 @@ $(document).ready(function(){
 
 	document.getElementById("estudia-no").checked=true;
 	$("#estudia-si").change(function(){
-		$("#beca").load("/imej/public/js/apartado_a/Contenido/contenido_beca.php");
-		$("#periodicidad").load("/imej/public/js/apartado_a/Contenido/contenido_periodicidad_beca.php");
-		$("#monto-beca").load("/imej/public/js/apartado_a/Contenido/contenido_beca_monto.php");
-		$("#traslado").load("/imej/public/js/apartado_a/Contenido/contenido_traslado.php");
+		$("#beca").load("/jovenes/public/js/apartado_a/Contenido/contenido_beca.php");
+		$("#periodicidad").load("/jovenes/public/js/apartado_a/Contenido/contenido_periodicidad_beca.php");
+		$("#monto-beca").load("/jovenes/public/js/apartado_a/Contenido/contenido_beca_monto.php");
+		$("#traslado").load("/jovenes/public/js/apartado_a/Contenido/contenido_traslado.php");
 	});	
 	$("#estudia-no").change(function(){
 		$("#beca").html("");///abre
@@ -114,7 +114,7 @@ $(document).ready(function(){
 
 	document.getElementById("ingreso-no").checked=true;
 	$("#ingreso-si").change(function(){
-		$("#ingreso").load("/imej/public/js/apartado_a/Contenido/contenido_ingreso.php");
+		$("#ingreso").load("/jovenes/public/js/apartado_a/Contenido/contenido_ingreso.php");
 	});	
 	$("#ingreso-no").change(function(){
 		$("#ingreso").html("");///abre
@@ -122,7 +122,7 @@ $(document).ready(function(){
 
 	document.getElementById("afectada-no").checked=true;
 	$("#afectada-si").change(function(){
-		$("#respuesta-fenomeno").load("/imej/public/js/apartado_a/Contenido/contenido_fenomeno.php");
+		$("#respuesta-fenomeno").load("/jovenes/public/js/apartado_a/Contenido/contenido_fenomeno.php");
 	});	
 	$("#afectada-no").change(function(){
 		$("#respuesta-fenomeno").html("");///abre
