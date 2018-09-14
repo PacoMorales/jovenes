@@ -23,7 +23,7 @@
 										<p>Tu folio es: imej-{{ $usuario->folio }}.</p>
 
 										<p>No olvides descargar tu comprobante de registro.</p>
-										<a href="{{#}}" class="btn btn-danger">Comprobante de Registro en formato PDF <i class="fa fa-file"></i></a>
+										<a href="#" class="btn btn-danger">Comprobante de Registro en formato PDF <i class="fa fa-file"></i></a>
 									</div>
 								</div>
 						</div>
